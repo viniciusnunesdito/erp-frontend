@@ -227,7 +227,7 @@ export default function NovaVendaPage() {
     }
 
     if (desconto < 0 || desconto > produtoSelecionado.preco) {
-      setStatus("O desconto precisa ficar entre zero e o preco original do produto.");
+      setStatus("O desconto precisa ficar entre zero e o preço original do produto.");
       return;
     }
 
@@ -396,7 +396,7 @@ export default function NovaVendaPage() {
               </p>
             ) : null}
             <div className="mt-2 rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Cadastro rapido</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Cadastro rápido</p>
               <div className="mt-3 grid gap-3 md:grid-cols-3">
                 <input
                   className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm"
@@ -464,105 +464,137 @@ export default function NovaVendaPage() {
         </div>
       </div>
 
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
-        <div className="flex items-center justify-between gap-4">
-          <h2 className="text-lg font-semibold">Adicionar item</h2>
-        </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-[1.2fr_0.6fr_0.6fr_0.6fr]">
-          <div className="grid gap-2 md:col-span-3">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="produtoBusca">
-              Produto
-            </label>
-            <input
-              id="produtoBusca"
-              className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
-              placeholder="Buscar por nome ou SKU"
-              value={produtoQuery}
-              onChange={(event) => {
-                setProdutoQuery(event.target.value);
-                setProdutoSelecionado(null);
-                setItemForm((prev) => ({ ...prev, desconto: "0" }));
-              }}
-            />
-            <div className="mt-2 max-h-52 overflow-auto rounded-xl border border-zinc-200 bg-white">
-              {produtosFiltrados.slice(0, 8).map((produto) => (
-                <button
-                  key={produto.sku}
-                  type="button"
-                  className="flex w-full items-center justify-between border-b border-zinc-100 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-zinc-50"
-                  onClick={() => selecionarProduto(produto)}
-                >
-                  <div>
-                    <p className="font-medium text-zinc-900">{produto.nome}</p>
-                    <p className="text-xs text-zinc-500">SKU {produto.sku}</p>
-                  </div>
-                  <div className="text-right text-xs text-zinc-500">
-                    <p>{formatCurrency(produto.preco)}</p>
-                    <p>{produto.estoque} em estoque</p>
-                  </div>
-                </button>
-              ))}
-              {produtosFiltrados.length === 0 ? (
-                <p className="px-4 py-3 text-sm text-zinc-500">Nenhum produto encontrado.</p>
-              ) : null}
-            </div>
-            {produtoSelecionado ? (
-              <p className="text-xs font-medium text-emerald-700">
-                Selecionado: {produtoSelecionado.nome} | Estoque disponivel para inserir: {estoqueDisponivelAtual}
-              </p>
-            ) : null}
-          </div>
-          <div className="grid gap-2">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="quantidade">
-              Quantidade
-            </label>
-            <input
-              id="quantidade"
-              className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
-              value={itemForm.quantidade}
-              onChange={(event) =>
-                setItemForm((prev) => ({ ...prev, quantidade: event.target.value }))
-              }
-            />
-            {produtoSelecionado && quantidadeDigitada > estoqueDisponivelAtual ? (
-              <p className="text-xs font-medium text-rose-600">
-                Quantidade maior que o estoque disponivel ({estoqueDisponivelAtual}).
-              </p>
-            ) : null}
-          </div>
-          <div className="grid gap-2">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="precoOriginal">
-              Preco original
-            </label>
-            <input
-              id="precoOriginal"
-              className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
-              value={produtoSelecionado ? formatCurrency(produtoSelecionado.preco) : ""}
-              readOnly
-            />
-          </div>
-          <div className="grid gap-2">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="desconto">
-              Desconto unitario
-            </label>
-            <input
-              id="desconto"
-              className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
-              value={itemForm.desconto}
-              onChange={(event) => setItemForm((prev) => ({ ...prev, desconto: event.target.value }))}
-            />
-            <p className="text-xs text-zinc-500">Preco final unitario: {formatCurrency(precoFinalItem)}</p>
-          </div>
-        </div>
+<div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+  <div className="flex items-center justify-between gap-4">
+    <h2 className="text-lg font-semibold">Adicionar item</h2>
+  </div>
+
+  {/* Produto */}
+  <div className="mt-6 grid gap-2">
+    <label className="text-sm font-medium text-zinc-700" htmlFor="produtoBusca">
+      Produto
+    </label>
+
+    <input
+      id="produtoBusca"
+      className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
+      placeholder="Buscar por nome ou SKU"
+      value={produtoQuery}
+      onChange={(event) => {
+        setProdutoQuery(event.target.value);
+        setProdutoSelecionado(null);
+        setItemForm((prev) => ({ ...prev, desconto: "0" }));
+      }}
+    />
+
+    <div className="mt-2 max-h-52 overflow-auto rounded-xl border border-zinc-200 bg-white">
+      {produtosFiltrados.slice(0, 8).map((produto) => (
         <button
+          key={produto.sku}
           type="button"
-          className="mt-5 h-11 rounded-full bg-zinc-900 px-6 text-sm font-semibold text-white disabled:opacity-60"
-          onClick={handleAddItem}
-          disabled={!itemPodeSerAdicionado}
+          className="flex w-full items-center justify-between border-b border-zinc-100 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-zinc-50"
+          onClick={() => selecionarProduto(produto)}
         >
-          Adicionar item
+          <div>
+            <p className="font-medium text-zinc-900">{produto.nome}</p>
+            <p className="text-xs text-zinc-500">SKU {produto.sku}</p>
+          </div>
+          <div className="text-right text-xs text-zinc-500">
+            <p>{formatCurrency(produto.preco)}</p>
+            <p>{produto.estoque} em estoque</p>
+          </div>
         </button>
+      ))}
+
+      {produtosFiltrados.length === 0 ? (
+        <p className="px-4 py-3 text-sm text-zinc-500">Nenhum produto encontrado.</p>
+      ) : null}
+    </div>
+
+    {produtoSelecionado ? (
+      <p className="text-xs font-medium text-emerald-700">
+        Selecionado: {produtoSelecionado.nome} | Estoque disponível: {estoqueDisponivelAtual}
+      </p>
+    ) : null}
+  </div>
+
+  {/* Inputs alinhados */}
+  <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+
+    {/* Quantidade */}
+    <div className="grid gap-2">
+      <label className="text-sm font-medium text-zinc-700" htmlFor="quantidade">
+        Quantidade
+      </label>
+
+      <input
+        id="quantidade"
+        className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
+        value={itemForm.quantidade}
+        onChange={(event) =>
+          setItemForm((prev) => ({ ...prev, quantidade: event.target.value }))
+        }
+      />
+
+      <div className="min-h-[18px]">
+        {produtoSelecionado && quantidadeDigitada > estoqueDisponivelAtual ? (
+          <p className="text-xs font-medium text-rose-600">
+            Quantidade maior que o estoque disponível ({estoqueDisponivelAtual}).
+          </p>
+        ) : null}
       </div>
+    </div>
+
+    {/* Preço original */}
+    <div className="grid gap-2">
+      <label className="text-sm font-medium text-zinc-700" htmlFor="precoOriginal">
+        Preço original
+      </label>
+
+      <input
+        id="precoOriginal"
+        className="h-11 rounded-xl border border-zinc-300 bg-zinc-50 px-4 text-sm text-zinc-600"
+        value={produtoSelecionado ? formatCurrency(produtoSelecionado.preco) : ""}
+        readOnly
+      />
+
+      {/* espaço fixo para manter alinhamento */}
+      <div className="min-h-[18px]" />
+    </div>
+
+    {/* Desconto */}
+    <div className="grid gap-2">
+      <label className="text-sm font-medium text-zinc-700" htmlFor="desconto">
+        Desconto unitário
+      </label>
+
+      <input
+        id="desconto"
+        className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
+        value={itemForm.desconto}
+        onChange={(event) =>
+          setItemForm((prev) => ({ ...prev, desconto: event.target.value }))
+        }
+      />
+
+      <div className="min-h-[18px]">
+        <p className="text-xs text-zinc-500">
+          Preço final unitário: {formatCurrency(precoFinalItem)}
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <button
+    type="button"
+    className="mt-6 h-11 rounded-full bg-zinc-900 px-6 text-sm font-semibold text-white disabled:opacity-60"
+    onClick={handleAddItem}
+    disabled={!itemPodeSerAdicionado}
+  >
+    Adicionar item
+  </button>
+</div>
 
       <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
         <h2 className="text-lg font-semibold">Itens da venda</h2>

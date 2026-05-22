@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "ERP Frontend",
-  description: "ERP front-end pages for login, sales, and inventory",
+  description: "ERP front-end para operações essenciais de vendas, clientes e produtos.",
 };
 
 export default async function RootLayout({

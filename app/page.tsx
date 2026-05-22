@@ -8,7 +8,7 @@ export default function Home() {
           </p>
           <h1 className="text-4xl font-semibold leading-tight text-zinc-900">
             Use os atalhos abaixo para navegar entre as telas principais e
-            acompanhar indicadores do negocio.
+            acompanhar indicadores do negócio.
           </h1>
           <div className="flex flex-wrap gap-3 text-sm font-semibold">
             <a className="rounded-full bg-zinc-900 px-4 py-2 text-white" href="/dashboard">
