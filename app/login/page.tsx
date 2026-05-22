@@ -3,19 +3,12 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
-const sessaoOptions = [
-  "Manha (08:00 - 12:00)",
-  "Tarde (13:00 - 18:00)",
-  "Noite (19:00 - 23:00)",
-];
-
 export default function LoginPage() {
   const router = useRouter();
 
   const [form, setForm] = useState({
     email: "",
     senha: "",
-    sessao: sessaoOptions[0],
     lembrar: false,
   });
 
@@ -34,7 +27,6 @@ export default function LoginPage() {
         body: JSON.stringify({
           email: form.email,
           senha: form.senha,
-          sessao: form.sessao,
         }),
       });
 
@@ -49,7 +41,6 @@ export default function LoginPage() {
         router.push("/");
         router.refresh();
       }, 500);
-
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Erro inesperado";
@@ -65,14 +56,19 @@ export default function LoginPage() {
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
           Acesso
         </p>
-        <h1 className="mt-4 text-3xl font-semibold text-zinc-900">Login</h1>
+        <h1 className="mt-4 text-3xl font-semibold text-zinc-900">
+          Login
+        </h1>
         <p className="mt-3 text-sm text-zinc-600">
-          Entre com suas credenciais e escolha a sessao ativa.
+          Entre com suas credenciais.
         </p>
 
         <form className="mt-8 grid gap-6" onSubmit={handleSubmit}>
           <div className="grid gap-2">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="email">
+            <label
+              className="text-sm font-medium text-zinc-700"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -87,7 +83,10 @@ export default function LoginPage() {
           </div>
 
           <div className="grid gap-2">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="senha">
+            <label
+              className="text-sm font-medium text-zinc-700"
+              htmlFor="senha"
+            >
               Senha
             </label>
             <input
@@ -101,26 +100,6 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="grid gap-2">
-            <label className="text-sm font-medium text-zinc-700" htmlFor="sessao">
-              Sessao
-            </label>
-            <select
-              id="sessao"
-              className="h-12 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
-              value={form.sessao}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, sessao: e.target.value }))
-              }
-            >
-              {sessaoOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-
           <div className="flex items-center gap-2 text-sm text-zinc-600">
             <input
               type="checkbox"
@@ -129,10 +108,12 @@ export default function LoginPage() {
                 setForm((p) => ({ ...p, lembrar: e.target.checked }))
               }
             />
-            <label>Manter sessao ativa</label>
+            <label>Manter login ativo</label>
           </div>
 
-          {status && <p className="text-sm text-zinc-600">{status}</p>}
+          {status && (
+            <p className="text-sm text-zinc-600">{status}</p>
+          )}
 
           <button
             type="submit"
@@ -145,7 +126,7 @@ export default function LoginPage() {
       </div>
 
       <aside className="rounded-3xl border border-zinc-200/70 bg-zinc-900 p-10 text-white shadow-sm">
-        <h2 className="text-2xl font-semibold">Dica rapida</h2>
+        <h2 className="text-2xl font-semibold">Dica rápida</h2>
         <p className="mt-4 text-sm text-zinc-200">
           Não compartilhe suas credenciais com outras pessoas.
         </p>

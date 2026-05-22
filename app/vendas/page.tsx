@@ -137,7 +137,7 @@ export default function VendasPage() {
                 <th className="px-4 py-3">Data</th>
                 <th className="px-4 py-3">Itens</th>
                 <th className="px-4 py-3">Total</th>
-                <th className="px-4 py-3 text-right">Acoes</th>
+                <th className="px-4 py-3 text-right">Ações</th>
               </tr>
             </thead>
             <tbody>

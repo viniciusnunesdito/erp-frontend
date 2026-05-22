@@ -573,11 +573,11 @@ export default function NovaVendaPage() {
                 <th className="px-4 py-3">Item</th>
                 <th className="px-4 py-3">Produto</th>
                 <th className="px-4 py-3">Qtd</th>
-                <th className="px-4 py-3">Preco original</th>
+                <th className="px-4 py-3">Preço original</th>
                 <th className="px-4 py-3">Desconto</th>
-                <th className="px-4 py-3">Preco final</th>
+                <th className="px-4 py-3">Preço final</th>
                 <th className="px-4 py-3">Subtotal</th>
-                <th className="px-4 py-3 text-right">Acoes</th>
+                <th className="px-4 py-3 text-right">Ações</th>
               </tr>
             </thead>
             <tbody>

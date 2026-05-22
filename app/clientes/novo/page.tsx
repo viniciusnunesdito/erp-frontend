@@ -69,7 +69,7 @@ export default function NovoClientePage() {
   };
 
   return (
-    <section className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+    <section className="flex justify-center px-4">
       <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-10 shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
           Clientes
@@ -191,14 +191,6 @@ export default function NovoClientePage() {
           </div>
         </form>
       </div>
-
-      <aside className="rounded-3xl border border-zinc-200/70 bg-zinc-900 p-10 text-white shadow-sm">
-        <h2 className="text-2xl font-semibold">Fluxo separado</h2>
-
-        <p className="mt-4 text-sm text-zinc-200">
-          A criação não compete com a visualização da lista. Isso deixa a navegação mais clara.
-        </p>
-      </aside>
     </section>
   );
 }
