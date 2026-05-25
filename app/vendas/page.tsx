@@ -95,7 +95,7 @@ export default function VendasPage() {
 
   return (
     <section className="grid gap-8">
-      <header className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+      <header className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
@@ -106,12 +106,14 @@ export default function VendasPage() {
               Consulte os pedidos já registrados e abra a tela separada para criar uma nova.
             </p>
           </div>
-          <Link
-            className="h-11 rounded-full bg-zinc-900 px-5 pt-3 text-sm font-semibold text-white"
-            href="/vendas/nova"
-          >
-            Nova venda
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              className="h-11 rounded-full bg-zinc-900 px-5 pt-3 text-sm font-semibold text-white"
+              href="/vendas/nova"
+            >
+              Nova venda
+            </Link>
+          </div>
         </div>
         <div className="mt-6 grid gap-3 md:grid-cols-2">
           {[
@@ -126,10 +128,10 @@ export default function VendasPage() {
         </div>
       </header>
 
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+      <div className="min-w-0 rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
         <h2 className="text-lg font-semibold">Vendas registradas</h2>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-zinc-200">
-          <table className="w-full text-left text-sm">
+        <div className="mt-6 w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-2xl border border-zinc-200 pb-2">
+          <table className="min-w-[840px] w-full text-left text-sm">
             <thead className="bg-zinc-100/70 text-xs uppercase tracking-[0.2em] text-zinc-500">
               <tr>
                 <th className="px-4 py-3">ID</th>

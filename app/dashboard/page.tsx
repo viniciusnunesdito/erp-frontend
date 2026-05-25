@@ -259,7 +259,7 @@ export default function DashboardPage() {
       {loading ? <p className="text-sm text-zinc-500">Atualizando...</p> : null}
       {status ? <p className="text-sm text-zinc-600">{status}</p> : null}
 
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+      <div className="min-w-0 rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold">Vendas por dia</h2>
@@ -293,11 +293,14 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-3xl border border-zinc-200 bg-zinc-50 p-4">
+        <div className="mt-6 w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-3xl border border-zinc-200 bg-zinc-50 p-4 pb-6 sm:overflow-x-visible sm:overscroll-x-auto">
           {chartData.length === 0 ? (
             <p className="text-sm text-zinc-500">Sem dados para o periodo.</p>
           ) : (
-            <div ref={chartContainerRef} className="relative h-[260px] w-full">
+            <div
+              ref={chartContainerRef}
+              className="relative h-[260px] min-w-[760px] w-full sm:min-w-0"
+            >
 
               {/* Tooltip */}
               {hoveredPoint && hoveredIndex !== null ? (

@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+}

@@ -73,8 +73,8 @@ export default function VendaDetalhePage({
 
   return (
     <section className="flex justify-center px-4">
-      <div className="w-full max-w-4xl rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
-        <div className="flex items-center justify-between gap-4">
+      <div className="w-full max-w-4xl rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
               Vendas
@@ -96,7 +96,7 @@ export default function VendaDetalhePage({
           <p className="mt-8 text-sm text-zinc-500">Carregando venda...</p>
         ) : venda ? (
           <div className="mt-8 grid gap-6">
-            <div className="grid gap-3 rounded-2xl border border-zinc-200 bg-white p-6 text-sm">
+            <div className="grid gap-3 rounded-2xl border border-zinc-200 bg-white p-4 text-sm sm:p-6">
               <div className="flex items-center justify-between gap-4">
                 <span className="text-zinc-500">Venda</span>
                 <span className="font-semibold text-zinc-900">
@@ -126,11 +126,11 @@ export default function VendaDetalhePage({
               </div>
             </div>
 
-            <div className="rounded-2xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-2xl border border-zinc-200 bg-white p-4 sm:p-6">
               <h2 className="text-lg font-semibold">Itens</h2>
 
-              <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200">
-                <table className="w-full text-left text-sm">
+              <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-200">
+                <table className="min-w-[720px] w-full text-left text-sm">
                   <thead className="bg-zinc-100/70 text-xs uppercase tracking-[0.2em] text-zinc-500">
                     <tr>
                       <th className="px-4 py-3">Produto</th>

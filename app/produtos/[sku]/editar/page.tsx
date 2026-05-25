@@ -102,7 +102,7 @@ export default function EditarProdutoPage({
 
   return (
     <section className="flex justify-center px-4">
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-10 shadow-sm">
+      <div className="w-full max-w-2xl rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-10">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">Produtos</p>
         <h1 className="mt-4 text-3xl font-semibold text-zinc-900">Editar produto</h1>
         <p className="mt-3 text-sm text-zinc-600">
@@ -143,7 +143,7 @@ export default function EditarProdutoPage({
               <label className="text-sm font-medium text-zinc-700" htmlFor="foto">
                 Foto
               </label>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="h-14 w-14 overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
                   {preview ? (
                     <img
@@ -168,7 +168,7 @@ export default function EditarProdutoPage({
               <p className="text-xs text-zinc-400">PNG ou JPG ate 1-2 MB.</p>
             </div>
             {status ? <p className="text-sm text-zinc-600">{status}</p> : null}
-            <div className="flex gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <button
                 type="submit"
                 className="h-11 flex-1 rounded-xl bg-zinc-900 text-sm font-semibold text-white"

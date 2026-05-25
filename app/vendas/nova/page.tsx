@@ -331,8 +331,8 @@ export default function NovaVendaPage() {
   return (
     <section className="grid gap-6">
 
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
-        <div className="flex items-center justify-between gap-4">
+      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-lg font-semibold">Dados da venda</h2>
           {loadingCatalogo ? <span className="text-sm text-zinc-500">Carregando catalogo...</span> : null}
         </div>
@@ -358,7 +358,7 @@ export default function NovaVendaPage() {
             </label>
             <input
               id="clienteBusca"
-              className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
+              className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-4 text-sm"
               placeholder="Buscar por nome, email ou codigo"
               value={clienteQuery}
               disabled={semCliente}
@@ -375,14 +375,14 @@ export default function NovaVendaPage() {
                   <button
                     key={cliente.id}
                     type="button"
-                    className="flex w-full items-center justify-between border-b border-zinc-100 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-zinc-50"
+                    className="flex w-full min-w-0 items-center justify-between border-b border-zinc-100 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-zinc-50"
                     onClick={() => selecionarCliente(cliente)}
                   >
-                    <div>
-                      <p className="font-medium text-zinc-900">{cliente.nome}</p>
-                      <p className="text-xs text-zinc-500">{cliente.email}</p>
+                    <div className="min-w-0">
+                      <p className="truncate font-medium text-zinc-900">{cliente.nome}</p>
+                      <p className="truncate text-xs text-zinc-500">{cliente.email}</p>
                     </div>
-                    <span className="text-xs text-zinc-500">{cliente.id}</span>
+                    <span className="shrink-0 text-xs text-zinc-500">{cliente.id}</span>
                   </button>
                 ))
               )}
@@ -391,7 +391,7 @@ export default function NovaVendaPage() {
               ) : null}
             </div>
             {clienteSelecionado && !semCliente ? (
-              <p className="text-xs font-medium text-emerald-700">
+              <p className="break-words text-xs font-medium text-emerald-700">
                 Selecionado: {clienteSelecionado.nome}
               </p>
             ) : null}
@@ -445,7 +445,7 @@ export default function NovaVendaPage() {
             {vendaAntiga ? (
               <input
                 type="datetime-local"
-                className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
+                className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-4 text-sm"
                 value={realizadaEm}
                 onChange={(event) => setRealizadaEm(event.target.value)}
               />
@@ -464,7 +464,7 @@ export default function NovaVendaPage() {
         </div>
       </div>
 
-<div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+<div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
   <div className="flex items-center justify-between gap-4">
     <h2 className="text-lg font-semibold">Adicionar item</h2>
   </div>
@@ -477,7 +477,7 @@ export default function NovaVendaPage() {
 
     <input
       id="produtoBusca"
-      className="h-11 rounded-xl border border-zinc-300 bg-white px-4 text-sm"
+      className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-4 text-sm"
       placeholder="Buscar por nome ou SKU"
       value={produtoQuery}
       onChange={(event) => {
@@ -492,14 +492,14 @@ export default function NovaVendaPage() {
         <button
           key={produto.sku}
           type="button"
-          className="flex w-full items-center justify-between border-b border-zinc-100 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-zinc-50"
+          className="flex w-full min-w-0 items-center justify-between border-b border-zinc-100 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-zinc-50"
           onClick={() => selecionarProduto(produto)}
         >
-          <div>
-            <p className="font-medium text-zinc-900">{produto.nome}</p>
-            <p className="text-xs text-zinc-500">SKU {produto.sku}</p>
+          <div className="min-w-0">
+            <p className="truncate font-medium text-zinc-900">{produto.nome}</p>
+            <p className="truncate text-xs text-zinc-500">SKU {produto.sku}</p>
           </div>
-          <div className="text-right text-xs text-zinc-500">
+          <div className="shrink-0 text-right text-xs text-zinc-500">
             <p>{formatCurrency(produto.preco)}</p>
             <p>{produto.estoque} em estoque</p>
           </div>
@@ -512,7 +512,7 @@ export default function NovaVendaPage() {
     </div>
 
     {produtoSelecionado ? (
-      <p className="text-xs font-medium text-emerald-700">
+      <p className="break-words text-xs font-medium text-emerald-700">
         Selecionado: {produtoSelecionado.nome} | Estoque disponível: {estoqueDisponivelAtual}
       </p>
     ) : null}
@@ -596,10 +596,10 @@ export default function NovaVendaPage() {
   </button>
 </div>
 
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+      <div className="min-w-0 rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
         <h2 className="text-lg font-semibold">Itens da venda</h2>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-zinc-200">
-          <table className="w-full text-left text-sm">
+        <div className="mt-6 w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-2xl border border-zinc-200 pb-2">
+          <table className="min-w-[840px] w-full text-left text-sm">
             <thead className="bg-zinc-100/70 text-xs uppercase tracking-[0.2em] text-zinc-500">
               <tr>
                 <th className="px-4 py-3">Item</th>
@@ -641,7 +641,7 @@ export default function NovaVendaPage() {
         {status ? <p className="mt-4 text-sm text-zinc-600">{status}</p> : null}
       </div>
 
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
         <h2 className="text-lg font-semibold">Resumo</h2>
         <div className="mt-6 grid gap-4 rounded-2xl border border-dashed border-zinc-200 p-6 text-sm">
           <div className="flex items-center justify-between">

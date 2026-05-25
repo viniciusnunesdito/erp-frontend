@@ -70,7 +70,7 @@ export default function NovoClientePage() {
 
   return (
     <section className="flex justify-center px-4">
-      <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-10 shadow-sm">
+      <div className="w-full max-w-2xl rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-10">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
           Clientes
         </p>
@@ -173,7 +173,7 @@ export default function NovoClientePage() {
             <p className="text-sm text-zinc-600">{status}</p>
           ) : null}
 
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="submit"
               className="h-11 flex-1 rounded-xl bg-zinc-900 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
