@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import ConfirmDialog from "../components/ConfirmDialog";
 
 type Produto = {
   sku: string;
@@ -34,6 +35,7 @@ export default function ProdutosPage() {
   const [status, setStatus] = useState("");
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("nome");
+  const [pendingDelete, setPendingDelete] = useState<Produto | null>(null);
 
   const loadProdutos = async () => {
     setLoading(true);
@@ -288,7 +290,7 @@ export default function ProdutosPage() {
                     <button
                       className="ml-2 rounded-full border border-rose-200 px-3 py-1 text-xs font-semibold text-rose-600"
                       type="button"
-                      onClick={() => handleDelete(produto.sku)}
+                      onClick={() => setPendingDelete(produto)}
                     >
                       Excluir
                     </button>
@@ -307,6 +309,23 @@ export default function ProdutosPage() {
           <p className="mt-4 text-sm text-zinc-600">{status}</p>
         ) : null}
       </div>
+        <ConfirmDialog
+          open={Boolean(pendingDelete)}
+          title="Excluir produto"
+          description={
+            pendingDelete
+              ? `Tem certeza de que deseja excluir o produto ${pendingDelete.nome}?`
+              : undefined
+          }
+          confirmLabel="Excluir produto"
+          onCancel={() => setPendingDelete(null)}
+          onConfirm={() => {
+            if (pendingDelete) {
+              void handleDelete(pendingDelete.sku);
+            }
+            setPendingDelete(null);
+          }}
+        />
     </section>
   );
 }

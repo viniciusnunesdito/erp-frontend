@@ -130,16 +130,16 @@ export default function PerfilPage() {
 
   return (
     <section className="grid gap-6">
-      <header className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+      <header className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">Conta</p>
         <h1 className="mt-3 text-3xl font-semibold text-zinc-900">Perfil</h1>
         <p className="mt-2 text-sm text-zinc-600">Confira os dados da conta conectada.</p>
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+        <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
           <p className="text-sm font-semibold text-zinc-700">Foto de perfil</p>
-          <div className="mt-6 flex items-center gap-5">
+          <div className="mt-6 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
             <div className="h-20 w-20 overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
               {preview ? (
                 <img alt="Foto de perfil" className="h-full w-full object-cover" src={preview} />
@@ -174,21 +174,21 @@ export default function PerfilPage() {
         </div>
 
         <div className="grid gap-6">
-          <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+          <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
             <h2 className="text-sm font-semibold text-zinc-700">Informacoes</h2>
             {loading ? (
               <p className="mt-6 text-sm text-zinc-500">Carregando perfil...</p>
             ) : (
               <div className="mt-6 grid gap-4 text-sm">
-                <div className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white p-4">
+                <div className="flex flex-col gap-2 rounded-2xl border border-zinc-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-zinc-500">Email</span>
-                  <span className="font-semibold text-zinc-900">
+                  <span className="break-all font-semibold text-zinc-900 sm:text-right">
                     {profile?.email || "Nao informado"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white p-4">
+                <div className="flex flex-col gap-2 rounded-2xl border border-zinc-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-zinc-500">ID</span>
-                  <span className="font-semibold text-zinc-900">
+                  <span className="break-all font-semibold text-zinc-900 sm:text-right">
                     {profile?.id || "Nao informado"}
                   </span>
                 </div>
@@ -197,7 +197,7 @@ export default function PerfilPage() {
             {status ? <p className="mt-4 text-sm text-zinc-600">{status}</p> : null}
           </div>
 
-          <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-8 shadow-sm">
+          <div className="rounded-3xl border border-zinc-200/70 bg-white/80 p-6 shadow-sm sm:p-8">
             <h2 className="text-sm font-semibold text-zinc-700">Seguranca</h2>
             <div className="mt-6 grid gap-4 text-sm">
               <div className="grid gap-2">

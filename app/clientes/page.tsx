@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import ConfirmDialog from "../components/ConfirmDialog";
 
 type Cliente = {
   id: string;
@@ -29,6 +30,7 @@ export default function ClientesPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const [query, setQuery] = useState("");
+  const [pendingDelete, setPendingDelete] = useState<Cliente | null>(null);
 
   const loadClientes = async () => {
     setLoading(true);
@@ -215,7 +217,7 @@ export default function ClientesPage() {
                     <button
                       className="ml-2 rounded-full border border-rose-200 px-3 py-1 text-xs font-semibold text-rose-600"
                       type="button"
-                      onClick={() => handleDelete(cliente.id)}
+                      onClick={() => setPendingDelete(cliente)}
                     >
                       Excluir
                     </button>
@@ -234,6 +236,23 @@ export default function ClientesPage() {
           <p className="mt-4 text-sm text-zinc-600">{status}</p>
         ) : null}
       </div>
+        <ConfirmDialog
+          open={Boolean(pendingDelete)}
+          title="Excluir cliente"
+          description={
+            pendingDelete
+              ? `Tem certeza de que deseja excluir o cliente ${pendingDelete.nome}?`
+              : undefined
+          }
+          confirmLabel="Excluir cliente"
+          onCancel={() => setPendingDelete(null)}
+          onConfirm={() => {
+            if (pendingDelete) {
+              void handleDelete(pendingDelete.id);
+            }
+            setPendingDelete(null);
+          }}
+        />
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ConfirmDialog from "../components/ConfirmDialog";
 
 type Venda = {
   id: string;
@@ -38,6 +39,7 @@ export default function VendasPage() {
   const [vendas, setVendas] = useState<Venda[]>([]);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
+  const [pendingDelete, setPendingDelete] = useState<Venda | null>(null);
 
   const loadVendas = async () => {
     setLoading(true);
@@ -63,11 +65,6 @@ export default function VendasPage() {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const confirmed = window.confirm("Deseja excluir esta venda? O estoque sera devolvido para os produtos existentes.");
-    if (!confirmed) {
-      return;
-    }
-
     setLoading(true);
     setStatus("");
 
@@ -160,7 +157,7 @@ export default function VendasPage() {
                     <button
                       className="ml-2 rounded-full border border-rose-200 px-3 py-1 text-xs font-semibold text-rose-600"
                       type="button"
-                      onClick={() => void handleDelete(venda.id)}
+                      onClick={() => setPendingDelete(venda)}
                     >
                       Excluir
                     </button>
@@ -173,6 +170,23 @@ export default function VendasPage() {
         {loading ? <p className="mt-4 text-sm text-zinc-500">Atualizando...</p> : null}
         {status ? <p className="mt-4 text-sm text-zinc-600">{status}</p> : null}
       </div>
+        <ConfirmDialog
+          open={Boolean(pendingDelete)}
+          title="Excluir venda"
+          description={
+            pendingDelete
+              ? "Esta venda será removida e o estoque voltará para os produtos registrados. Deseja continuar?"
+              : undefined
+          }
+          confirmLabel="Excluir venda"
+          onCancel={() => setPendingDelete(null)}
+          onConfirm={() => {
+            if (pendingDelete) {
+              void handleDelete(pendingDelete.id);
+            }
+            setPendingDelete(null);
+          }}
+        />
     </section>
   );
 }

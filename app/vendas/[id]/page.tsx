@@ -126,11 +126,11 @@ export default function VendaDetalhePage({
               </div>
             </div>
 
-            <div className="rounded-2xl border border-zinc-200 bg-white p-4 sm:p-6">
+            <div className="min-w-0 rounded-2xl border border-zinc-200 bg-white p-4 sm:p-6">
               <h2 className="text-lg font-semibold">Itens</h2>
 
-              <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-200">
-                <table className="min-w-[720px] w-full text-left text-sm">
+              <div className="mt-4 w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-xl border border-zinc-200 pb-2">
+                <table className="min-w-[840px] w-full text-left text-sm">
                   <thead className="bg-zinc-100/70 text-xs uppercase tracking-[0.2em] text-zinc-500">
                     <tr>
                       <th className="px-4 py-3">Produto</th>
